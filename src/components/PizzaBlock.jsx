@@ -1,11 +1,14 @@
 import { useState } from "react"
 
-function PizzaBlock({ title, image, price }) {
+
+function PizzaBlock({ title, image, price, size, type }) {
+
+    const [sizeButton, setSizeButton] = useState(0)
     const [count, setCount] = useState(0)
-    function setCountButtn() {
-        setCount(count + 1)
-        console.log("выведи" + { count })
-    }
+    const [types, setTypes] = useState(0)
+    const typesPizzes = ["Тонкое", "Традиционное"]
+
+
     return (
         <div className="pizza-block">
             <img className="pizza-block__image"
@@ -14,16 +17,30 @@ function PizzaBlock({ title, image, price }) {
             <h4 className="pizza-block__title">{title}</h4>
             <div className="pizza-block__selector">
                 <ul>
-                    <li >тонкое</li>
-                    <li>традиционное</li>
+                    {type.map((items, i) => (
+
+                        <li key={i}
+                            onClick={() => setTypes(items)}
+                            className={types === items ? "active" : ""} >
+                            {typesPizzes[items]}
+                        </li>
+                    ))}
+
                 </ul>
                 <ul>
-                    <li >26 см.</li >
-                    <li>30 см.</li>
-                    <li>40 см.</li>
+                    {size.map((Value, i) => (
+                        <li key={i}
+                            onClick={() => setSizeButton(i)}
+                            className={sizeButton === i ? "active" : ""} >
+                            {Value} см.
+                        </li >
+                    ))}
+
+
+
                 </ul>
             </div>
-            <buttton onClick={setCountButtn} className="pizza-block__bottom">
+            <div onClick={() => setCount(count + 1)} className="pizza-block__bottom">
                 <div className="pizza-block__price">От {price} Руб</div>
                 <div className="button button--outline button--add">
                     <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -34,7 +51,7 @@ function PizzaBlock({ title, image, price }) {
                     <span>Добавить</span>
                     <i>{count}</i>
                 </div>
-            </buttton>
+            </div>
         </div>
     )
 }

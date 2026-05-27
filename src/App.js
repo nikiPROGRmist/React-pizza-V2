@@ -7,7 +7,7 @@ import pizzas from './assets/pizza.json'
 
 function App() {
   return (
-    <div classNameName="App">
+    <div className="App">
       <div className="wrapper">
         <Header />
         <div className="content">
@@ -21,10 +21,7 @@ function App() {
               <div className="content__items">
                 {
                   pizzas.map((item, i) => (
-                    <PizzaBlock
-                      title={item.title}
-                      image={item.image}
-                      price={item.price} />
+                    <PizzaBlock key={item.id} {...item} />
 
                   ))
                 }

@@ -3,18 +3,42 @@
         "id": 0,
         "image": "https://media.dodostatic.net/image/r:760x760/019c986d0e7d75e595d9b0f02bda0ed5.avif",
         "title": "Мексиканская",
-        "price": 289
+        "price": 289,
+        "type": [
+            0,
+            1
+        ],
+        "size": [
+            26,
+            30,
+            40
+        ]
     },
     {
         "id": 1,
         "image": "https://media.dodostatic.net/image/r:584x584/0198bf3b88d5772695c7f9e557b5b196.avif",
         "title": "Мясная",
-        "price": 499
+        "price": 499,
+        "type": [
+            0,
+            1
+        ],
+        "size": [
+            26,
+            30
+        ]
     },
     {
         "id": 2,
         "image": "https://media.dodostatic.net/image/r:584x584/019a8aaa69cc7601b28736b1ebe7fc25.avif",
         "title": "Песто",
-        "price": 799
+        "price": 799,
+        "type": [
+            0,
+            1
+        ],
+        "size": [
+            26
+        ]
     }
 ]
