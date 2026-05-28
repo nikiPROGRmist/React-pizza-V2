@@ -32,6 +32,19 @@
         "id": 2,
         "image": "https://media.dodostatic.net/image/r:584x584/019a8aaa69cc7601b28736b1ebe7fc25.avif",
         "title": "Песто",
+        "price": 299,
+        "type": [
+            0,
+            1
+        ],
+        "size": [
+            26
+        ]
+    },
+    {
+        "id": 2,
+        "image": "https://media.dodostatic.net/image/r:584x584/019a8aaa69cc7601b28736b1ebe7fc25.avif",
+        "title": "Песто",
         "price": 799,
         "type": [
             0,
