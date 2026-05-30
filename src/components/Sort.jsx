@@ -1,9 +1,11 @@
 import { useState } from "react"
 
-function Sort() {
-    const [sortItem, setSortItem] = useState(0)
+function Sort({ setSortItem, sortItem, sortList }) {
     const [open, setOpen] = useState(false)
-    const sortList = ["популярности", "цене", "алфавиту"]
+    // const sortList = ["популярности", "цена по возрастанию", "цена по убыванию", "алфавиту"]
+
+    // console.log(sortList[0].name)
+
 
 
     const setSortButton = (i) => {
@@ -26,17 +28,22 @@ function Sort() {
                     />
                 </svg>
                 <b>Сортировка по:</b>
-                <span onClick={() => setOpen(!open)}>{sortList[sortItem]}</span>
+                <span onClick={() => setOpen(!open)}>{sortItem.name}</span>
+                {console.log(sortItem)}
             </div>
-            {open && <div className="sort__popup">
-                <ul>
-                    {sortList.map((item, i) => (
-                        <li key={i} onClick={() => setSortButton(i)} className={sortItem === i ? "active" : ""}>{item}</li>
-                    ))}
+            {open &&
+                <div className="sort__popup">
+                    <ul>
+                        {sortList.map((value, i) => (
 
-                </ul>
-            </div>}
-        </div>
+
+                            < li onClick={() => setSortButton(value)} className={value.name === sortItem.name ? "active" : ""}> {value.name}</li>
+
+                        ))}
+
+                    </ul>
+                </div>}
+        </div >
     )
 }
 

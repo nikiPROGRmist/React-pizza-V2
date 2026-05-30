@@ -2,11 +2,23 @@
 
 .categories {
   ul {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    display: flex;
+    justify-content: space-between;
 
     @media (max-width:1400px) {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    @media (max-width:940px) {
+      display: grid;
       grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width:740px) {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+
     }
 
 
@@ -19,6 +31,10 @@
       cursor: pointer;
       transition: background-color 0.1s ease-in-out;
       @include noselect();
+
+      @media (max-width:1400px) {
+        margin-top: 10px;
+      }
 
       &:hover {
         background-color: darken(#f9f9f9, 2%);
