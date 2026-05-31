@@ -1,5 +1,6 @@
 import { Link } from "react-router"
 import logoSVG from "../assets/img/pizza-logo.svg"
+import { Serch } from "./Serch"
 function Header() {
     return (
         <div className="header">
@@ -13,6 +14,7 @@ function Header() {
                         </div>
                     </div>
                 </Link>
+                <Serch />
                 <Link to="/cart">
                     <div className="header__cart">
                         <a href="/cart.html" className="button button--cart">

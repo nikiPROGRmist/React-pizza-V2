@@ -1,0 +1,30 @@
+.root {
+
+
+
+
+    &_img {
+        position: relative;
+        max-width: 25px;
+        top: 37px;
+        left: 5px;
+
+        height: auto;
+    }
+
+    input {
+        width: 350px;
+        border: 1px solid;
+        border-radius: 20px;
+
+        padding: 10px 10px 10px 40px;
+
+        &::placeholder {
+            padding-left: 20px;
+            text-indent: 0; // сбрасываем text-indent если был
+
+        }
+    }
+
+
+}

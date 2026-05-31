@@ -1,15 +1,24 @@
 import { useState } from "react"
+import { setSortItem } from "../redux/slices/filterSlice"
+import { useDispatch, useSelector } from "react-redux";
 
-function Sort({ setSortItem, sortItem, sortList }) {
+
+function Sort() {
+    const sortItem = useSelector((state) => state.filter.sortItem)
+    const dispatch = useDispatch()
     const [open, setOpen] = useState(false)
-    // const sortList = ["популярности", "цена по возрастанию", "цена по убыванию", "алфавиту"]
 
-    // console.log(sortList[0].name)
+    const sortList = [
+        { name: "Популярности (Убывание)", sorting: "?sortBy=raiting" },
+        { name: "Популярности (возрастание)", sorting: "?sortBy=raiting&order=desc" },
+        { name: "Цена по возрастанию", sorting: "?sortBy=price" },
+        { name: "Цена по убыванию", sorting: "?sortBy=price&order=desc" },
+        { name: "Алфавиту", sorting: "?sortby=title" }
 
+    ];
 
-
-    const setSortButton = (i) => {
-        setSortItem(i)
+    const setSortButton = (value) => {
+        dispatch(setSortItem(value))
         setOpen(false)
     }
     return (
@@ -29,18 +38,19 @@ function Sort({ setSortItem, sortItem, sortList }) {
                 </svg>
                 <b>Сортировка по:</b>
                 <span onClick={() => setOpen(!open)}>{sortItem.name}</span>
-                {console.log(sortItem)}
+
             </div>
             {open &&
                 <div className="sort__popup">
                     <ul>
                         {sortList.map((value, i) => (
-
-
-                            < li onClick={() => setSortButton(value)} className={value.name === sortItem.name ? "active" : ""}> {value.name}</li>
-
+                            < li
+                                key={i}
+                                onClick={() => setSortButton(value)}
+                                className={value.name === sortItem.name ? "active" : ""}>
+                                {value.name}
+                            </li>
                         ))}
-
                     </ul>
                 </div>}
         </div >
