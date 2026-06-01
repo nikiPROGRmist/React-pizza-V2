@@ -7,29 +7,30 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 function Homes() {
-
     const [isloading, setIsLoadeing] = useState(true)
     const [showPizzas, setshowPizzas] = useState([])
-    const { categoriesIndex, sortItem } = useSelector((state) => state.filter)
 
+    const { categoriesIndex, sortItem, serch } = useSelector((state) => state.filter)
 
 
     useEffect(() => {
         const URL = `https://6a17d7bb1878294b597bec67.mockapi.io/react-pizza`
         const categoryAdd = `${categoriesIndex === 0 ? '' : `&category=${categoriesIndex}`}`
+        const serchTitle = `&search=${serch}`
         setIsLoadeing(true)
-        axios.get(URL + sortItem.sorting + categoryAdd)
+        axios.get(URL + sortItem.sorting + serchTitle + categoryAdd)
 
             .then(response => {
                 setshowPizzas(response.data)
                 setIsLoadeing(false)
             })
             .catch((error => console.error("Ошибка", error)))
-    }, [categoriesIndex, sortItem])
+    }, [categoriesIndex, sortItem, serch])
 
 
     return (
         <>
+
             <div className="content__top">
                 <Categories />
                 <Sort />
@@ -39,7 +40,8 @@ function Homes() {
                 <div className="content__items">
                     {isloading ?
                         [...new Array(8)].map((val, index) => <Skeleton key={index} />)
-                        : showPizzas.map((item, i) => (<PizzaBlock key={item.id} {...item} />))}
+                        : showPizzas.map((item, i) =>
+                            (<PizzaBlock key={item.id} {...item} />))}
                 </div>
             </div>
         </>

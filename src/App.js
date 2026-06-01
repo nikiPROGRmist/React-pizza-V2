@@ -8,7 +8,6 @@ import NotFound from './pages/NotFound.jsx';
 
 function App() {
 
-
   return (
 
     <div className="App">
@@ -23,7 +22,6 @@ function App() {
             </Routes>
           </div>
         </div>
-
       </div>
     </div >
 
