@@ -1,15 +1,24 @@
 .root {
+    // display: flex;
 
+    // justify-content: space-between;
 
+    &_input {
+        display: flex;
+    }
 
 
     &_img {
-        position: relative;
+        // position: relative;
         max-width: 25px;
-        top: 37px;
-        left: 5px;
 
         height: auto;
+    }
+
+    &_close {
+
+        max-width: 25px;
+
     }
 
     input {

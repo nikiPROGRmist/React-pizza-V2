@@ -7,9 +7,7 @@ import NotFound from './pages/NotFound.jsx';
 
 
 function App() {
-
   return (
-
     <div className="App">
       <div className="wrapper">
         <Header />
@@ -24,7 +22,6 @@ function App() {
         </div>
       </div>
     </div >
-
   );
 }
 
