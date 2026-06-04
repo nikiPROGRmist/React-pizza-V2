@@ -7,17 +7,30 @@
         display: flex;
     }
 
+    .input__item {
+        display: flex;
+    }
+
 
     &_img {
-        // position: relative;
+        position: relative;
         max-width: 25px;
-
+        left: 33px;
         height: auto;
     }
 
-    &_close {
-
+    &_active {
+        position: relative;
+        right: 36px;
         max-width: 25px;
+
+    }
+
+    &_close {
+        position: relative;
+        right: 36px;
+        max-width: 25px;
+        opacity: 0;
 
     }
 
