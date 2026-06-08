@@ -5,13 +5,18 @@ import Skeleton from '../components/Skeleton';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import Pagination from '../components/pagination/index.js';
 
 function Homes() {
     const [isloading, setIsLoadeing] = useState(true)
     const [showPizzas, setshowPizzas] = useState([])
-
+    const [currentPage, setCurrentPage] = useState(1)
+    const [currentPerPage] = useState(4)
     const { categoriesIndex, sortItem, serch } = useSelector((state) => state.filter)
-
+    const lastPageIndex = currentPage * currentPerPage
+    const firstPageIndex = lastPageIndex - currentPerPage
+    const currentSlicePage = showPizzas.slice(firstPageIndex, lastPageIndex)
+    const currentNumbersIndex = Math.ceil(showPizzas.length / currentPerPage)
 
     useEffect(() => {
         const URL = `https://6a17d7bb1878294b597bec67.mockapi.io/react-pizza`
@@ -28,9 +33,10 @@ function Homes() {
     }, [categoriesIndex, sortItem, serch])
 
 
+
+
     return (
         <>
-
             <div className="content__top">
                 <Categories />
                 <Sort />
@@ -40,10 +46,13 @@ function Homes() {
                 <div className="content__items">
                     {isloading ?
                         [...new Array(8)].map((val, index) => <Skeleton key={index} />)
-                        : showPizzas.map((item, i) =>
+                        : currentSlicePage.map((item, i) =>
                             (<PizzaBlock key={item.id} {...item} />))}
                 </div>
             </div>
+            <Pagination currentPage={currentPage}
+                currentNumbersIndex={currentNumbersIndex}
+                setCurrentPage={setCurrentPage} />
         </>
     )
 }
