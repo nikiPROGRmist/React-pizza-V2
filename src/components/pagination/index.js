@@ -1,15 +1,20 @@
+import { useDispatch, useSelector } from "react-redux"
 import Style from "./pagination.module.scss"
+import { setCurrentPage } from '../../redux/slices/filterSlice'
 
-const Pagination = ({ currentNumbersIndex, setCurrentPage, currentPage }) => {
+const Pagination = ({ currentNumbersIndex }) => {
+    const currentPagePaginate = useSelector(state => state.filter.currentPagePaginate)
+    const dispatch = useDispatch()
     return (
         <>
             <ul className={Style.root}>
                 {
                     [...Array(currentNumbersIndex).keys()].map((number => (
                         <li
-
-                            className={`${Style.root_item}  ${currentPage === number + 1 ? Style.active : ''}`}
-                            onClick={() => setCurrentPage(number + 1)}>
+                            key={number}
+                            className={`${Style.root_item}  
+                            ${currentPagePaginate === number + 1 ? Style.active : ''}`}
+                            onClick={() => dispatch(setCurrentPage(number + 1))}>
                             {number + 1}
                         </li>
                     )))
