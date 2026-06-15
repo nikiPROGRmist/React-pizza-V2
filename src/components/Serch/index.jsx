@@ -30,6 +30,7 @@ export const Serch = () => {
     const handleClear = () => {
         setInputValue("")
         dispatch(setSerch(""))
+        console.log(dispatch(setSerch("")))
     }
 
     return (

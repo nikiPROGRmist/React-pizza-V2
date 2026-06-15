@@ -1,7 +1,4 @@
 .root {
-    // display: flex;
-
-    // justify-content: space-between;
 
     &_input {
         display: flex;
@@ -22,14 +19,14 @@
     &_active {
         position: relative;
         right: 36px;
-        max-width: 25px;
+        max-width: 15px;
 
     }
 
     &_close {
         position: relative;
         right: 36px;
-        max-width: 25px;
+        max-width: 15px;
         opacity: 0;
 
     }
