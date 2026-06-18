@@ -21,10 +21,12 @@ function Homes() {
     const currentNumbersIndex = Math.ceil(getPizzas.length / currentPerPage)
     const paginate = `&page=${currentPagePaginate}&limit=${currentPerPage}`
     const category = `${categoriesIndex === 0 ? '' : `&category=${categoriesIndex}`}`
+    const serchTitle = `&search=${serch}`
     const navigate = useNavigate()
     const dispath = useDispatch()
     const URL = `https://6a17d7bb1878294b597bec67.mockapi.io/react-pizza`
     const isMounted = useRef(false)
+    const isSerch = useRef(false)
 
     useEffect(() => {
         axios.get(URL)
@@ -32,41 +34,47 @@ function Homes() {
                 setGetPizzas(res.data)
             })
 
-        const Params = qs.parse(window.location.search.substring(1))
-        const sorting = sortList.find(list => console.log(Params.sortItem, list))
-        console.log(sorting)
-        dispath(setActionParams({
-            ...Params,
-            sorting
-        }))
+        if (window.location.search) {
+            const Params = qs.parse(window.location.search.substring(1))
+            const sortings = sortList.find(obj => obj.sorting === Params.sortItem)
+            dispath(setActionParams({
+                ...Params,
+                sortings
+            }))
+            isSerch.current = true
+        }
 
     }, [URL])
 
 
-
-
     useEffect(() => {
-        const serchTitle = `&search=${serch}`
-
         setIsLoadeing(true)
-        axios.get(URL + sortItem.sorting + paginate + category)
-            .then(response => {
-                setshowPizzas(response.data)
-                window.scrollTo(0, 0)
-                setIsLoadeing(false)
-            })
+        if (!isSerch.current) {
+            axios.get(URL + sortItem.sorting + paginate + category)
+                .then(response => {
+                    setshowPizzas(response.data)
+                    window.scrollTo(0, 0)
+                    setIsLoadeing(false)
+                })
+        }
+        isSerch.current = false
+
+
+
 
         if (isMounted.current) {
+            const paginateObj = qs.parse(paginate);
             const qeryString = qs.stringify({
                 sortItem: sortItem.sorting,
-                paginate,
+                ...paginateObj,
                 category: categoriesIndex
 
-            }, { encode: false })
+            },)
 
             navigate(`?${qeryString}`)
         }
         isMounted.current = true
+
 
 
 

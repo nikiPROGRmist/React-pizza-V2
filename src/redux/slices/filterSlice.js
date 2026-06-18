@@ -5,7 +5,8 @@ const initialState = {
     categoriesIndex: 0,
     sortItem: { name: "Популярности (Убывание)", sorting: "?sortBy=raiting" },
     serch: '',
-    currentPagePaginate: 1
+    currentPagePaginate: 1,
+    currentPerPage: 4
 }
 
 export const filterSlice = createSlice({
@@ -31,9 +32,8 @@ export const filterSlice = createSlice({
 
             state.categoriesIndex = Number(action.payload.category)
             state.currentPagePaginate = Number(action.payload.page)
-            // state.sortItem = action.payload.sorting
-            // console.log(action)
-
+            state.sortItem = action.payload.sortings
+            state.currentPerPage = Number(action.payload.limit)
         }
     }
 })
