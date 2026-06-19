@@ -28,6 +28,11 @@ function Homes() {
     const isMounted = useRef(false)
     const isSerch = useRef(false)
 
+
+
+
+
+
     useEffect(() => {
         axios.get(URL)
             .then(res => {
@@ -59,24 +64,17 @@ function Homes() {
         }
         isSerch.current = false
 
-
-
-
         if (isMounted.current) {
             const paginateObj = qs.parse(paginate);
             const qeryString = qs.stringify({
                 sortItem: sortItem.sorting,
                 ...paginateObj,
                 category: categoriesIndex
-
             },)
 
             navigate(`?${qeryString}`)
         }
         isMounted.current = true
-
-
-
 
     }, [categoriesIndex, sortItem, paginate, serch, URL])
 
