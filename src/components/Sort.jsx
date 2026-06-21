@@ -16,6 +16,14 @@ function Sort() {
     const [open, setOpen] = useState(false)
     const isSort = useRef(null)
 
+    const addPopupSort = () => {
+        window.addEventListener("click", event => {
+            if (!event.composedPath().includes(isSort.current)) {
+                setOpen(false)
+            }
+        })
+    }
+
     const setSortButton = (value) => {
         dispatch(setSortItem(value))
         setOpen(false)
@@ -23,11 +31,11 @@ function Sort() {
 
 
     useEffect(() => {
-        window.addEventListener("click", event => {
-            if (!event.composedPath().includes(isSort.current)) {
-                setOpen(false)
-            }
-        })
+        window.addEventListener('click', addPopupSort())
+
+        return (
+            window.removeEventListener('click', addPopupSort())
+        )
     }, [])
 
 

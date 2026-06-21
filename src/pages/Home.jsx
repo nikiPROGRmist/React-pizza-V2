@@ -28,11 +28,6 @@ function Homes() {
     const isMounted = useRef(false)
     const isSerch = useRef(false)
 
-
-
-
-
-
     useEffect(() => {
         axios.get(URL)
             .then(res => {
