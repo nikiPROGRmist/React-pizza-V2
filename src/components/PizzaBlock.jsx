@@ -4,6 +4,14 @@ import { setAddItems, setRemoveItems, setCountPlus, setCount } from "../redux/sl
 
 
 function PizzaBlock({ id, title, image, price, size, type, count }) {
+    const itemsCart = useSelector(state => state.cart.items)
+    const pizzaCount = itemsCart.find(obj => obj.id === id)
+    const addCount = () => {
+        if (pizzaCount) {
+            const countCurrent = pizzaCount.count
+            return countCurrent
+        }
+    }
 
     const [sizeButton, setSizeButton] = useState(0)
     const [countPlus, setCount] = useState(0)
@@ -60,7 +68,7 @@ function PizzaBlock({ id, title, image, price, size, type, count }) {
                             fill="white" />
                     </svg>
                     <span >Добавить</span>
-                    <i>{countPlus}</i>
+                    {pizzaCount && <i>{addCount()}</i>}
                 </div>
             </div>
         </div >
